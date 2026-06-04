@@ -3,7 +3,7 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // ==================== 1. PRODUCT DATABASE & MODELS ====================
     const CLEAT_DATABASE = [
         // ==================== PUMA ====================
@@ -334,18 +334,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageInput = document.getElementById("page-input");
     const pageResult = document.getElementById("page-result");
     const pageWishlist = document.getElementById("page-wishlist");
-    
+
     // Sliders & Custom Range Elements
     const widthProgress = document.getElementById("width-progress");
     const styleProgress = document.getElementById("style-progress");
     const groundProgress = document.getElementById("ground-progress");
     const brandProgress = document.getElementById("brand-progress");
-    
+
     // Numeric Price range
     const inputPriceMin = document.getElementById("input-price-min");
     const inputPriceMax = document.getElementById("input-price-max");
     const priceWarning = document.getElementById("price-warning");
-    
+
     // Action Buttons
     const btnNext = document.getElementById("btn-next");
     const btnReMatch = document.getElementById("btn-re-match");
@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnWishlistHome = document.getElementById("btn-wishlist-home");
     const btnEmptyStart = document.getElementById("btn-empty-start");
     const brandLogo = document.getElementById("brand-logo");
-    
+
     // Matching Screen Dynamic Fields
     const resultMatchRate = document.getElementById("result-match-rate");
     const resultCleatImg = document.getElementById("result-cleat-img");
@@ -365,17 +365,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultCleatTags = document.getElementById("result-cleat-tags");
     const resultNlpReview = document.getElementById("result-nlp-review");
     const resultMarketplaceRows = document.getElementById("result-marketplace-rows");
-    
+    const resultSentimentScore = document.getElementById("result-sentiment-score");
+    const resultSentimentBar = document.getElementById("result-sentiment-bar");
+    const resultProsTags = document.getElementById("result-pros-tags");
+    const resultCautionsTags = document.getElementById("result-cautions-tags");
+
     // Live Scraper elements
     const scraperLoader = document.getElementById("scraper-loader");
     const loaderBar = document.getElementById("loader-bar");
     const loaderLog = document.getElementById("loader-log");
-    
+
     // Wishlist Container
     const wishlistGrid = document.getElementById("wishlist-grid");
     const wishlistEmptyView = document.getElementById("wishlist-empty-view");
     const wishlistCount = document.getElementById("wishlist-count");
-    
+
     // System Clock Footer
     const footerTime = document.getElementById("footer-time");
 
@@ -385,13 +389,13 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeWishlistBadge();
 
     // ==================== 5. INTERACTIVE SLIDER EVENTS ====================
-    
+
     // Setup foot width nodes
     setupNodeSelector("widget-foot-width", "width", widthProgress, ["narrow", "normal", "wide"]);
-    
+
     // Setup play style nodes
     setupNodeSelector("widget-play-style", "style", styleProgress, ["speed", "control", "physical"]);
-    
+
     // Setup ground type nodes
     setupNodeSelector("widget-ground-type", "ground", groundProgress, ["fg", "ag", "hg"]);
 
@@ -419,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================== 6. PRICE RANGE SPINNERS & VALIDATOR ====================
-    
+
     // Min adjusters
     setupPriceAdjuster("btn-min-minus", "btn-min-plus", "input-price-min", "priceMin");
     // Max adjusters
@@ -475,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================== 7. DYNAMIC RECOMMENDATION ALGORITHM ====================
-    
+
     function runCleatMatchingAlgorithm() {
         // 1. Filter database strictly by selected brand if not "all"
         let filteredDatabase = CLEAT_DATABASE;
@@ -537,11 +541,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================== 8. LIVE WEB SCRAPER SIMULATION ====================
-    
+
     function startScraperSequence(callback) {
         scraperLoader.classList.add("active");
         loaderBar.style.width = "0%";
-        
+
         const logs = [
             { time: 100, text: "CONNECTING TO DISTRIBUTED WEB SCRAPING CLUSTERS..." },
             { time: 300, text: "REQUESTING LATEST NAVER SHOPPING PRODUCT SCHEMAS... OK" },
@@ -573,38 +577,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Set matching rate typography
         resultMatchRate.textContent = `${matchData.matchRate}%`;
-        
+
         // Populate core labels
         resultCleatImg.src = cleat.image;
         resultCleatImg.alt = cleat.name;
         resultCleatName.textContent = cleat.name;
         resultCleatDesc.textContent = cleat.bio;
 
-        // Populate AI Summary Tags
+        // Populate AI Summary Tags & Categorized Analysis Tags
         resultCleatTags.innerHTML = "";
+        resultProsTags.innerHTML = "";
+        resultCautionsTags.innerHTML = "";
+
+        let hasCautions = false;
         cleat.tags.forEach(tag => {
+            const isCaution = tag.includes("주의") || tag.includes("좁은") || tag.includes("타이트");
+
+            // Showcase card tags
             const span = document.createElement("span");
-            span.className = "ai-tag";
+            span.className = `ai-tag ${isCaution ? 'ai-tag-caution' : 'ai-tag-pro'}`;
             span.textContent = tag;
             resultCleatTags.appendChild(span);
+
+            // Categorized tag elements
+            const categorySpan = document.createElement("span");
+            categorySpan.className = `ai-tag ${isCaution ? 'ai-tag-caution' : 'ai-tag-pro'}`;
+            categorySpan.textContent = tag;
+
+            if (isCaution) {
+                resultCautionsTags.appendChild(categorySpan);
+                hasCautions = true;
+            } else {
+                resultProsTags.appendChild(categorySpan);
+            }
         });
 
-        // Set NLP review blocks
+        if (!hasCautions) {
+            const span = document.createElement("span");
+            span.className = "ai-tag";
+            span.style.background = "rgba(255,255,255,0.02)";
+            span.style.borderColor = "rgba(255,255,255,0.05)";
+            span.style.color = "var(--text-secondary)";
+            span.textContent = "#특이사항없음";
+            resultCautionsTags.appendChild(span);
+        }
+
+        // Set NLP review blocks & Sentiment Gauge
         resultNlpReview.textContent = cleat.nlpReview;
-        const nlpBadge = pageResult.querySelector(".nlp-badge");
-        if (nlpBadge) {
-            nlpBadge.innerHTML = `SENTIMENT ANALYSIS: <span class="accent-text">${cleat.nlpScore}</span>`;
+
+        // Parse sentiment score
+        const scoreMatch = cleat.nlpScore.match(/([\d\.]+)%/);
+        const percentage = scoreMatch ? parseFloat(scoreMatch[1]) : 50;
+
+        if (resultSentimentScore) {
+            resultSentimentScore.textContent = cleat.nlpScore;
+        }
+        if (resultSentimentBar) {
+            resultSentimentBar.style.width = "0%";
+            setTimeout(() => {
+                resultSentimentBar.style.width = `${percentage}%`;
+            }, 50);
+
+            if (percentage >= 90) {
+                resultSentimentBar.style.background = "linear-gradient(90deg, #CCFF00 0%, #00FF66 100%)";
+            } else {
+                resultSentimentBar.style.background = "linear-gradient(90deg, #CCFF00 0%, #00e5ff 100%)";
+            }
         }
 
         // Set live scraped price table
         resultMarketplaceRows.innerHTML = "";
         cleat.prices.forEach(priceObj => {
+            if (priceObj.market === "Musinsa Sports") {
+                return; // Skip Musinsa Sports to show only Naver Shopping & Kream
+            }
             const tr = document.createElement("tr");
             tr.className = "clickable-price-row";
 
             // Build purchase search query URL dynamically using optimized search keys tailored per platform
             let query = "";
-            
+
             // Define silo names and brand prefixes for optimized searching
             let brandPrefix = "";
             if (cleat.brand === "nike") brandPrefix = "나이키";
@@ -638,11 +690,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 query = encodeURIComponent(cleat.koreanSearchKey || cleat.name);
                 purchaseUrl = `https://search.shopping.naver.com/search/all?query=${query}`;
             } else if (priceObj.market === "Musinsa Sports") {
-                // Map to Crazy 11 (Korea's #1 specialized soccer mall)
-                marketDisplayName = "Crazy 11";
-                // Brand + Silo search query (e.g. '나이키 머큐리얼') guarantees exact brand cleats on Crazy 11
+                // Map to Capo Store (Korea's premier specialized soccer mall)
+                marketDisplayName = "Capo Store";
+                // Brand + Silo search query (e.g. '나이키 머큐리얼') guarantees exact brand cleats on Capo Store
                 query = encodeURIComponent(`${brandPrefix} ${siloName}`);
-                purchaseUrl = `https://www.crazy11.co.kr/shop/shopbrand.html?search=${query}`;
+                purchaseUrl = `https://www.capostore.co.kr/goods/goods_search.php?keyword=${query}`;
             } else {
                 // Map to Kream (Premium footwear/cleats marketplace)
                 marketDisplayName = "Kream";
@@ -656,17 +708,17 @@ document.addEventListener("DOMContentLoaded", () => {
             tr.addEventListener("click", () => {
                 window.open(purchaseUrl, "_blank");
             });
-            
+
             const tdMarket = document.createElement("td");
             tdMarket.innerHTML = `<span class="market-link-text">${marketDisplayName} <span class="accent-text">↗</span></span>`;
-            
+
             const tdPrice = document.createElement("td");
             tdPrice.className = "text-right price-highlight";
             tdPrice.textContent = `₩${priceObj.price.toLocaleString()}`;
-            
+
             const tdStatus = document.createElement("td");
             tdStatus.className = "text-right";
-            
+
             const spanStatus = document.createElement("span");
             if (priceObj.isLowest) {
                 spanStatus.className = "price-status green";
@@ -675,7 +727,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 spanStatus.className = "price-status";
                 spanStatus.textContent = "판매중";
             }
-            
+
             tdStatus.appendChild(spanStatus);
             tr.appendChild(tdMarket);
             tr.appendChild(tdPrice);
@@ -688,14 +740,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================== 9. SCREEN TRANSITIONS ====================
-    
+
     function navigateToSection(targetSection) {
         // Fade out all sections
         const sections = [pageInput, pageResult, pageWishlist];
         sections.forEach(sec => {
             sec.classList.remove("active");
         });
-        
+
         // Render target active
         setTimeout(() => {
             targetSection.classList.add("active");
@@ -714,7 +766,7 @@ document.addEventListener("DOMContentLoaded", () => {
         topMatches.forEach((match, index) => {
             const btn = document.createElement("button");
             btn.className = `recommendation-tab-btn ${index === 0 ? 'active' : ''}`;
-            
+
             // Clean names for neat representation in tab buttons
             let cleanName = match.cleat.name;
             cleanName = cleanName.replace(" AG", "").replace(" Academy", "").replace(" Zoom", "");
@@ -742,10 +794,10 @@ document.addEventListener("DOMContentLoaded", () => {
     btnNext.addEventListener("click", () => {
         // Run matching logic first returning ranked matching list
         const rankedMatches = runCleatMatchingAlgorithm();
-        
+
         // Navigate to the result screen first so the full-screen loader shows up
         navigateToSection(pageResult);
-        
+
         // Show scraper live loader animation
         startScraperSequence(() => {
             // Once scraper completes, render top 3 matched tabs and populate details
@@ -777,7 +829,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==================== 10. WISHLIST MANAGEMENT (LOCAL STORAGE) ====================
-    
+
     function getWishlist() {
         const data = localStorage.getItem("kick_optimizer_wishlist");
         return data ? JSON.parse(data) : [];
@@ -791,7 +843,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function toggleWishlist(cleat) {
         let wishlist = getWishlist();
         const index = wishlist.findIndex(item => item.id === cleat.id);
-        
+
         if (index > -1) {
             // Item exists, remove it
             wishlist.splice(index, 1);
@@ -819,7 +871,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update wishlist star state on Page 2
     function updateWishlistStarButtonState() {
         if (!activeCleatResult) return;
-        
+
         const inWishlist = isWishlisted(activeCleatResult.id);
         if (inWishlist) {
             btnResultStar.classList.add("active");
@@ -836,7 +888,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnResultStar.addEventListener("click", () => {
         if (!activeCleatResult) return;
-        
+
         const added = toggleWishlist(activeCleatResult);
         updateWishlistStarButtonState();
         triggerFloatingNotification(added ? "보관함에 저장되었습니다." : "보관함에서 삭제되었습니다.");
@@ -844,7 +896,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnSaveWishlist.addEventListener("click", () => {
         if (!activeCleatResult) return;
-        
+
         const added = toggleWishlist(activeCleatResult);
         updateWishlistStarButtonState();
         triggerFloatingNotification(added ? "보관함에 저장되었습니다." : "보관함에서 삭제되었습니다.");
@@ -871,7 +923,7 @@ document.addEventListener("DOMContentLoaded", () => {
             wishlistEmptyView.style.display = "flex";
         } else {
             wishlistEmptyView.style.display = "none";
-            
+
             wishlist.forEach(item => {
                 const card = document.createElement("div");
                 card.className = "wishlist-card";
@@ -912,14 +964,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 deleteStarBtn.addEventListener("click", () => {
                     // Slide out card smoothly
                     card.classList.add("fade-out");
-                    
+
                     setTimeout(() => {
                         // Remove from Local Storage and DOM
                         let currentWishlist = getWishlist();
                         const newWishlist = currentWishlist.filter(w => w.id !== item.id);
                         saveWishlist(newWishlist);
                         card.remove();
-                        
+
                         // Check if empty now
                         if (getWishlist().length === 0) {
                             wishlistEmptyView.style.display = "flex";
@@ -930,7 +982,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.appendChild(img);
                 card.appendChild(details);
                 card.appendChild(deleteStarBtn);
-                
+
+                // Click handler to open detail modal
+                card.style.cursor = "pointer";
+                card.addEventListener("click", (e) => {
+                    // Do not trigger modal if clicking the delete star button
+                    if (e.target.closest(".card-star-btn")) {
+                        return;
+                    }
+                    openDetailModal(item.id);
+                });
+
                 wishlistGrid.appendChild(card);
             });
         }
@@ -980,8 +1042,189 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2500);
     }
 
-    // ==================== 11. HELPER: LIVE SYSTEM CLOCK ====================
-    
+    // ==================== 11. WISHLIST PRODUCT DETAIL MODAL ====================
+    const detailModal = document.getElementById("detail-modal");
+    const btnModalClose = document.getElementById("btn-modal-close");
+    const modalCleatImg = document.getElementById("modal-cleat-img");
+    const modalCleatName = document.getElementById("modal-cleat-name");
+    const modalCleatDesc = document.getElementById("modal-cleat-desc");
+    const modalCleatTags = document.getElementById("modal-cleat-tags");
+    const modalNlpReview = document.getElementById("modal-nlp-review");
+    const modalMarketplaceRows = document.getElementById("modal-marketplace-rows");
+    const modalSentimentScore = document.getElementById("modal-sentiment-score");
+    const modalSentimentBar = document.getElementById("modal-sentiment-bar");
+    const modalProsTags = document.getElementById("modal-pros-tags");
+    const modalCautionsTags = document.getElementById("modal-cautions-tags");
+
+    function openDetailModal(itemId) {
+        const cleat = CLEAT_DATABASE.find(c => c.id === itemId);
+        if (!cleat) return;
+
+        // Populate elements
+        modalCleatImg.src = cleat.image;
+        modalCleatImg.alt = cleat.name;
+        modalCleatName.textContent = cleat.name;
+        modalCleatDesc.textContent = cleat.bio;
+
+        // Populate tags & Categorized Analysis Tags in Modal
+        modalCleatTags.innerHTML = "";
+        modalProsTags.innerHTML = "";
+        modalCautionsTags.innerHTML = "";
+
+        let modalHasCautions = false;
+        cleat.tags.forEach(tag => {
+            const isCaution = tag.includes("주의") || tag.includes("좁은") || tag.includes("타이트");
+
+            // Modal showcase card tags
+            const span = document.createElement("span");
+            span.className = `ai-tag ${isCaution ? 'ai-tag-caution' : 'ai-tag-pro'}`;
+            span.textContent = tag;
+            modalCleatTags.appendChild(span);
+
+            // Modal categorized tag elements
+            const categorySpan = document.createElement("span");
+            categorySpan.className = `ai-tag ${isCaution ? 'ai-tag-caution' : 'ai-tag-pro'}`;
+            categorySpan.textContent = tag;
+
+            if (isCaution) {
+                modalCautionsTags.appendChild(categorySpan);
+                modalHasCautions = true;
+            } else {
+                modalProsTags.appendChild(categorySpan);
+            }
+        });
+
+        if (!modalHasCautions) {
+            const span = document.createElement("span");
+            span.className = "ai-tag";
+            span.style.background = "rgba(255,255,255,0.02)";
+            span.style.borderColor = "rgba(255,255,255,0.05)";
+            span.style.color = "var(--text-secondary)";
+            span.textContent = "#특이사항없음";
+            modalCautionsTags.appendChild(span);
+        }
+
+        // Set NLP review & Sentiment Gauge in Modal
+        modalNlpReview.textContent = cleat.nlpReview;
+
+        // Parse sentiment score
+        const scoreMatch = cleat.nlpScore.match(/([\d\.]+)%/);
+        const percentage = scoreMatch ? parseFloat(scoreMatch[1]) : 50;
+
+        if (modalSentimentScore) {
+            modalSentimentScore.textContent = cleat.nlpScore;
+        }
+        if (modalSentimentBar) {
+            modalSentimentBar.style.width = "0%";
+            setTimeout(() => {
+                modalSentimentBar.style.width = `${percentage}%`;
+            }, 50);
+
+            if (percentage >= 90) {
+                modalSentimentBar.style.background = "linear-gradient(90deg, #CCFF00 0%, #00FF66 100%)";
+            } else {
+                modalSentimentBar.style.background = "linear-gradient(90deg, #CCFF00 0%, #00e5ff 100%)";
+            }
+        }
+
+        // Set marketplace rows
+        modalMarketplaceRows.innerHTML = "";
+        cleat.prices.forEach(priceObj => {
+            if (priceObj.market === "Musinsa Sports") {
+                return; // Skip Musinsa Sports to show only Naver Shopping & Kream
+            }
+            const tr = document.createElement("tr");
+            tr.className = "clickable-price-row";
+
+            // Define silo names and brand prefixes for optimized searching
+            let brandPrefix = "";
+            if (cleat.brand === "nike") brandPrefix = "나이키";
+            else if (cleat.brand === "adidas") brandPrefix = "아디다스";
+            else if (cleat.brand === "puma") brandPrefix = "푸마";
+            else if (cleat.brand === "mizuno") brandPrefix = "미즈노";
+            else if (cleat.brand === "newbalance") brandPrefix = "뉴발란스";
+
+            let siloName = "";
+            if (cleat.id.includes("mercurial")) siloName = "머큐리얼";
+            else if (cleat.id.includes("phantom")) siloName = "팬텀";
+            else if (cleat.id.includes("tiempo")) siloName = "티엠포";
+            else if (cleat.id.includes("predator")) siloName = "프레데터";
+            else if (cleat.id.includes("crazyfast")) siloName = "크레이지패스트";
+            else if (cleat.id.includes("copa")) siloName = "코파";
+            else if (cleat.id.includes("ultra")) siloName = "울트라";
+            else if (cleat.id.includes("future")) siloName = "퓨처";
+            else if (cleat.id.includes("king")) siloName = "킹";
+            else if (cleat.id.includes("morelia")) siloName = "모렐리아";
+            else if (cleat.id.includes("alpha")) siloName = "알파";
+            else if (cleat.id.includes("monarcida")) siloName = "모나르시다";
+            else if (cleat.id.includes("furon")) siloName = "퓨론";
+            else if (cleat.id.includes("tekela")) siloName = "테케라";
+            else if (cleat.id.includes("442")) siloName = "442";
+
+            let marketDisplayName = priceObj.market;
+            let purchaseUrl = "";
+
+            if (priceObj.market === "Naver Shopping") {
+                marketDisplayName = "Naver Shopping";
+                let query = encodeURIComponent(cleat.koreanSearchKey || cleat.name);
+                purchaseUrl = `https://search.shopping.naver.com/search/all?query=${query}`;
+            } else if (priceObj.market === "Musinsa Sports") {
+                marketDisplayName = "Capo Store";
+                let query = encodeURIComponent(`${brandPrefix} ${siloName}`);
+                purchaseUrl = `https://www.capostore.co.kr/goods/goods_search.php?keyword=${query}`;
+            } else {
+                marketDisplayName = "Kream";
+                let query = encodeURIComponent(`${brandPrefix} ${siloName}`);
+                purchaseUrl = `https://kream.co.kr/search?keyword=${query}`;
+            }
+
+            tr.title = `${marketDisplayName}에서 ${cleat.name} 최저가 확인하기`;
+            tr.addEventListener("click", () => {
+                window.open(purchaseUrl, "_blank");
+            });
+
+            const tdMarket = document.createElement("td");
+            tdMarket.innerHTML = `<span class="market-link-text">${marketDisplayName} <span class="accent-text">↗</span></span>`;
+
+            const tdPrice = document.createElement("td");
+            tdPrice.className = "text-right price-highlight";
+            tdPrice.textContent = `₩${priceObj.price.toLocaleString()}`;
+
+            const tdStatus = document.createElement("td");
+            tdStatus.className = "text-right";
+
+            const spanStatus = document.createElement("span");
+            if (priceObj.isLowest) {
+                spanStatus.className = "price-status green";
+                spanStatus.textContent = "최저가";
+            } else {
+                spanStatus.className = "price-status";
+                spanStatus.textContent = "판매중";
+            }
+
+            tdStatus.appendChild(spanStatus);
+            tr.appendChild(tdMarket);
+            tr.appendChild(tdPrice);
+            tr.appendChild(tdStatus);
+            modalMarketplaceRows.appendChild(tr);
+        });
+
+        // Show Modal
+        detailModal.classList.add("active");
+    }
+
+    btnModalClose.addEventListener("click", () => {
+        detailModal.classList.remove("active");
+    });
+
+    detailModal.addEventListener("click", (e) => {
+        if (e.target === detailModal) {
+            detailModal.classList.remove("active");
+        }
+    });
+
+    // ==================== 12. HELPER: LIVE SYSTEM CLOCK ====================
+
     function updateSystemTime() {
         const now = new Date();
         const year = now.getFullYear();
@@ -990,7 +1233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
-        
+
         footerTime.textContent = `SYS_TIME: ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
 

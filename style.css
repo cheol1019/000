@@ -12,21 +12,23 @@
     --text-primary: #FFFFFF;
     --text-secondary: #A6A6A6;
     --text-dark: #000000;
-    
+
     --star-color: #FFD700;
     --star-glow: rgba(255, 215, 0, 0.5);
-    
+
     --border-color: rgba(255, 255, 255, 0.08);
     --neon-border: rgba(204, 255, 0, 0.2);
     --neon-border-focus: rgba(204, 255, 0, 0.6);
-    
+
     /* Typography */
     --font-primary: 'Outfit', 'Noto Sans KR', sans-serif;
     --font-tech: 'Orbitron', sans-serif;
 }
 
 /* Base Resets */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -50,7 +52,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
+    background-image:
         linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
     background-size: 50px 50px;
@@ -66,10 +68,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.12) 50%
-    );
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.12) 50%);
     background-size: 100% 4px;
     z-index: 9999;
     pointer-events: none;
@@ -80,14 +80,17 @@ body {
     width: 8px;
     height: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--bg-color);
     border-left: 1px solid var(--border-color);
 }
+
 ::-webkit-scrollbar-thumb {
     background: #252525;
     border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-color);
     box-shadow: 0 0 8px var(--accent-color);
@@ -130,7 +133,7 @@ body {
 .tech-version {
     font-size: 0.65rem;
     padding: 2px 6px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     letter-spacing: 0.5px;
@@ -162,7 +165,8 @@ body {
     color: var(--text-secondary);
 }
 
-.footer-left, .footer-right {
+.footer-left,
+.footer-right {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -188,6 +192,7 @@ body {
     height: 6px;
     border-radius: 50%;
 }
+
 .status-led.green {
     background: var(--accent-color);
     box-shadow: 0 0 8px var(--accent-color);
@@ -198,10 +203,12 @@ body {
     height: 8px;
     border-radius: 50%;
 }
+
 .status-indicator-light.green {
     background-color: var(--accent-color);
     box-shadow: 0 0 8px var(--accent-color);
 }
+
 .status-indicator-light.green-blink {
     background-color: var(--accent-color);
     box-shadow: 0 0 8px var(--accent-color);
@@ -209,17 +216,26 @@ body {
 }
 
 @keyframes cyber-blink {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 /* Font helpers */
 .font-mono {
     font-family: monospace;
 }
+
 .font-orbitron {
     font-family: var(--font-tech);
 }
+
 .uppercase {
     text-transform: uppercase;
 }
@@ -269,12 +285,10 @@ body {
     left: -100%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.4), 
-        transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
     transition: left 0.5s ease;
 }
 
@@ -284,7 +298,7 @@ body {
 
 .primary-neon-btn:hover {
     background-color: var(--text-primary);
-    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
 }
 
@@ -327,7 +341,7 @@ body {
 }
 
 .tech-nav-btn {
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     font-family: var(--font-tech);
@@ -384,7 +398,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
 }
 
@@ -402,9 +416,18 @@ body {
     height: 8px;
     border-radius: 50%;
 }
-.terminal-header .dot.red { background: #FF5F56; }
-.terminal-header .dot.yellow { background: #FFBD2E; }
-.terminal-header .dot.green { background: #27C93F; }
+
+.terminal-header .dot.red {
+    background: #FF5F56;
+}
+
+.terminal-header .dot.yellow {
+    background: #FFBD2E;
+}
+
+.terminal-header .dot.green {
+    background: #27C93F;
+}
 
 .terminal-title {
     font-family: var(--font-tech);
@@ -418,7 +441,8 @@ body {
     padding: 15px;
     font-size: 0.8rem;
     line-height: 1.8;
-    color: #00FF66; /* Green terminal text */
+    color: #00FF66;
+    /* Green terminal text */
 }
 
 .term-line {
@@ -440,8 +464,15 @@ body {
 }
 
 @keyframes cursor-blink {
-    from, to { border-color: transparent }
-    50% { border-color: var(--accent-color) }
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: var(--accent-color)
+    }
 }
 
 /* Right Controls Pane */
@@ -459,7 +490,7 @@ body {
     padding: 24px;
     backdrop-filter: blur(12px);
     transition: border-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .control-widget-card:hover {
@@ -550,7 +581,7 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     min-width: 100px;
     text-align: center;
 }
@@ -593,7 +624,7 @@ body {
 
 .number-input-row {
     display: flex;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
@@ -625,7 +656,7 @@ body {
 }
 
 .adjust-btn {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255, 255, 255, 0.04);
     border: none;
     color: var(--text-secondary);
     width: 40px;
@@ -689,7 +720,7 @@ body {
     backdrop-filter: blur(8px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: left;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .recommendation-tab-btn:hover {
@@ -774,7 +805,7 @@ body {
 .scraper-progress-container {
     width: 100%;
     height: 6px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 3px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -793,10 +824,10 @@ body {
     color: #00FF66;
     min-height: 48px;
     text-align: left;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     padding: 12px;
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.03);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     line-height: 1.5;
 }
 
@@ -824,7 +855,7 @@ body {
     position: relative;
     backdrop-filter: blur(15px);
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -884,7 +915,7 @@ body {
     font-weight: 800;
     font-size: 1rem;
     letter-spacing: 1px;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
     padding: 6px 14px;
     border-radius: 6px;
@@ -919,8 +950,15 @@ body {
 }
 
 @keyframes shoe-float {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(-3deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-3deg);
+    }
 }
 
 .image-glow-background {
@@ -940,7 +978,7 @@ body {
     width: 100%;
     text-align: left;
     margin-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     padding-top: 20px;
 }
 
@@ -989,7 +1027,7 @@ body {
     border-radius: 12px;
     padding: 24px;
     backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .data-widget-card.no-padding {
@@ -1005,12 +1043,140 @@ body {
 
 .nlp-badge {
     font-size: 0.75rem;
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
     padding: 6px 12px;
     border-radius: 4px;
     display: inline-block;
     color: var(--text-secondary);
+}
+
+/* ==================== NEW HIGH-FIDELITY AI ANALYSIS & SENTIMENT STYLES ==================== */
+.sentiment-gauge-wrapper {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sentiment-gauge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.sentiment-percent {
+    font-weight: 800;
+    font-family: var(--font-tech);
+}
+
+.sentiment-gauge-track {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.sentiment-gauge-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #CCFF00 0%, #00FF66 100%);
+    box-shadow: 0 0 10px rgba(204, 255, 0, 0.6);
+    border-radius: 4px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ai-analysis-tags-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.analysis-tag-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.group-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Categorized tag style overrides */
+.ai-tag-pro {
+    background: rgba(204, 255, 0, 0.04) !important;
+    border: 1px solid rgba(204, 255, 0, 0.3) !important;
+    color: var(--accent-color) !important;
+}
+
+.ai-tag-caution {
+    background: rgba(255, 95, 86, 0.04) !important;
+    border: 1px solid rgba(255, 95, 86, 0.3) !important;
+    color: #FF5F56 !important;
+}
+
+/* Status indicator gray */
+.status-indicator-light.muted-gray {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
+}
+
+/* ==================== DE-EMPHASIZED MARKETPLACE WIDGET ==================== */
+.price-widget-card-secondary {
+    border-color: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(18, 18, 18, 0.4) !important;
+}
+
+.price-widget-card-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+.price-widget-card-secondary .price-highlight {
+    color: #E2E2E2 !important;
+    font-family: var(--font-tech);
+    font-weight: 700;
+    text-shadow: none !important;
+    font-size: 0.95rem !important;
+}
+
+.price-widget-card-secondary .clickable-price-row:hover {
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.price-widget-card-secondary .clickable-price-row:hover .market-link-text {
+    color: #FFFFFF !important;
+    border-bottom-color: #FFFFFF !important;
+}
+
+.price-widget-card-secondary .price-status.green {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ECECEC !important;
+    box-shadow: none !important;
+}
+
+.marketplace-disclaimer {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 15px 20px 0 20px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    line-height: 1.5;
 }
 
 /* Scraping table styling */
@@ -1077,9 +1243,10 @@ body {
 .price-status {
     font-size: 0.75rem;
     padding: 2px 8px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 .price-status.green {
@@ -1133,7 +1300,7 @@ body {
     text-align: center;
     border: 1px dashed var(--border-color);
     border-radius: 12px;
-    background: rgba(255,255,255,0.01);
+    background: rgba(255, 255, 255, 0.01);
 }
 
 .empty-icon {
@@ -1183,8 +1350,8 @@ body {
     padding: 5px;
     margin-right: 20px;
     flex-shrink: 0;
-    border: 1px solid rgba(255,255,255,0.03);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 .wishlist-card-details {
@@ -1246,6 +1413,86 @@ body {
     transition: opacity 0.3s, transform 0.3s;
 }
 
+/* ==================== PREMIUM TECH DETAIL MODAL ==================== */
+.tech-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 8, 8, 0.85);
+    backdrop-filter: blur(15px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 11000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.tech-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.tech-modal-container {
+    background: rgba(18, 18, 18, 0.95);
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 0 30px var(--accent-glow);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 1100px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 40px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.tech-modal-overlay.active .tech-modal-container {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 12000;
+}
+
+.modal-close-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.modal-card-override {
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.01) !important;
+}
+
+@media (max-width: 1023px) {
+    .tech-modal-container {
+        padding: 30px 20px 20px 20px;
+        width: 95%;
+    }
+}
+
 
 /* ==========================================================================
    RESPONSIVE LAYOUT DIRECTIVES (DESKTOP VS. MOBILE BREAKPOINTS)
@@ -1256,30 +1503,30 @@ body {
     .dashboard-container {
         padding: 0 20px;
     }
-    
+
     .input-screen-layout {
         grid-template-columns: 1fr;
         gap: 35px;
     }
-    
+
     .intro-pane {
         align-items: center;
         text-align: center;
     }
-    
+
     .main-title {
         font-size: 2.8rem;
     }
-    
+
     .intro-description {
         max-width: 100%;
     }
-    
+
     .terminal-diagnostics {
         width: 100%;
         max-width: 550px;
     }
-    
+
     .result-screen-layout {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -1288,11 +1535,13 @@ body {
 
 /* Mobile View Adjustments (360px ~ 420px optimized) */
 @media (max-width: 767px) {
-    html, body {
+
+    html,
+    body {
         overflow-x: hidden !important;
         width: 100% !important;
     }
-    
+
     .dashboard-container {
         padding: 0 16px !important;
         width: 100% !important;
@@ -1307,22 +1556,22 @@ body {
         padding: 12px 0;
         text-align: center;
     }
-    
+
     .brand-logo {
         font-size: 1.4rem;
     }
-    
+
     .nav-actions {
         width: 100%;
     }
-    
+
     .tech-nav-btn {
         width: 100%;
         text-align: center;
         padding: 8px;
         font-size: 0.8rem;
     }
-    
+
     /* Matched Recommendations Tabs Mobile Overrides */
     .recommendations-tabs {
         display: flex !important;
@@ -1330,7 +1579,7 @@ body {
         margin-bottom: 12px !important;
         width: 100% !important;
     }
-    
+
     .recommendation-tab-btn {
         flex: 0 0 calc(33.33% - 6px) !important;
         padding: 6px 4px !important;
@@ -1340,11 +1589,11 @@ body {
         align-items: center !important;
         text-align: center !important;
     }
-    
+
     .tab-name {
         font-size: 0.7rem !important;
     }
-    
+
     .tab-rate {
         font-size: 0.85rem !important;
     }
@@ -1354,51 +1603,53 @@ body {
         font-size: 2.0rem;
         line-height: 1.2;
     }
-    
+
     .intro-description {
         font-size: 0.9rem;
         line-height: 1.5;
         margin-bottom: 0px;
-        display: none; /* Hide descriptive paragraphs to save massive space on mobile */
+        display: none;
+        /* Hide descriptive paragraphs to save massive space on mobile */
     }
-    
+
     .terminal-diagnostics {
-        display: none; /* Hide visual terminal on mobile so controls are visible immediately */
+        display: none;
+        /* Hide visual terminal on mobile so controls are visible immediately */
     }
-    
+
     .input-screen-layout {
         gap: 15px;
     }
-    
+
     .controls-pane {
         gap: 15px;
     }
-    
+
     .control-widget-card {
         padding: 16px;
         border-radius: 8px;
     }
-    
+
     .widget-header {
         margin-bottom: 15px;
         padding-bottom: 8px;
     }
-    
+
     .widget-title {
         font-size: 1.0rem;
     }
-    
+
     /* Node buttons stack or scroll */
     .node-slider-container {
         margin: 15px 0 8px 0;
     }
-    
+
     .node-selector-nodes {
         display: flex !important;
         justify-content: space-between !important;
         width: 100% !important;
     }
-    
+
     .node-btn {
         flex: 1 !important;
         min-width: 0 !important;
@@ -1408,7 +1659,7 @@ body {
         text-align: center !important;
         border-radius: 20px !important;
     }
-    
+
     /* 3x2 Grid configuration for Brand Selector on Mobile */
     .brand-nodes {
         display: flex !important;
@@ -1421,50 +1672,53 @@ body {
         padding: 0 !important;
         border-radius: 4px;
     }
-    
+
     .brand-nodes .node-btn {
         flex: 0 0 calc(33.33% - 6px) !important;
         margin: 0 !important;
         padding: 8px 2px !important;
         font-size: 0.8rem !important;
     }
-    
+
     /* Hide slider line for brand preference widget on mobile */
     #widget-brand-type .node-slider-line {
         display: none !important;
     }
-    
+
     /* Price inputs collapse side-by-side cleanly or wrap */
     .price-input-wrapper {
         flex-direction: column;
         gap: 10px;
         width: 100%;
     }
-    
+
     .price-connector {
-        display: none; /* Hide connector in vertical layout */
+        display: none;
+        /* Hide connector in vertical layout */
     }
-    
+
     .price-box {
         width: 100%;
     }
-    
+
     .number-input-row input {
         padding: 10px 5px;
     }
-    
+
     /* Full-width tap targets on mobile */
-    .primary-neon-btn, .secondary-outline-btn {
+    .primary-neon-btn,
+    .secondary-outline-btn {
         width: 100%;
         padding: 12px 18px;
         font-size: 0.9rem;
     }
-    
+
     .action-buttons-row {
-        grid-template-columns: 1fr; /* Stack buttons vertically */
+        grid-template-columns: 1fr;
+        /* Stack buttons vertically */
         gap: 10px;
     }
-    
+
     /* Result Screen Mobile Layout Adjustments */
     .result-screen-layout {
         display: flex !important;
@@ -1475,113 +1729,117 @@ body {
         padding: 0 !important;
         overflow-x: hidden !important;
     }
-    
-    .product-display-pane, .product-data-pane {
+
+    .product-display-pane,
+    .product-data-pane {
         width: 100% !important;
         min-width: 0 !important;
         box-sizing: border-box !important;
     }
-    
+
     .data-widget-card {
         padding: 16px !important;
         border-radius: 8px !important;
     }
-    
+
     .data-widget-card.no-padding {
         padding: 16px 0 !important;
     }
-    
+
     /* Showcase Result card resizing - Very compact to fit viewport */
     .product-showcase-card {
         padding: 15px;
         border-radius: 8px;
     }
-    
+
     .product-image-container {
-        height: 130px; /* Reduced to fit mobile screen gracefully */
+        height: 130px;
+        /* Reduced to fit mobile screen gracefully */
         margin: 15px 0 10px 0;
     }
-    
+
     .product-model {
         font-size: 1.3rem;
     }
-    
+
     .product-bio-description {
         font-size: 0.8rem;
         line-height: 1.4;
     }
-    
+
     .wishlist-star-btn {
         width: 38px;
         height: 38px;
         top: 10px;
         right: 10px;
     }
-    
+
     .wishlist-star-btn .star-icon {
         font-size: 1.1rem;
     }
-    
+
     .matching-badge {
         font-size: 0.75rem;
         top: 10px;
         left: 10px;
         padding: 3px 8px;
     }
-    
+
     .matching-badge span {
         font-size: 0.9rem;
     }
-    
+
     /* Scraped Table wrapping */
     .scraped-prices-table {
         width: 100% !important;
         table-layout: auto !important;
     }
-    
-    .scraped-prices-table th, .scraped-prices-table td {
+
+    .scraped-prices-table th,
+    .scraped-prices-table td {
         padding: 8px 6px !important;
         font-size: 0.75rem !important;
     }
-    
+
     .price-highlight {
         font-size: 0.85rem;
     }
-    
+
     /* Page 3 Wishlist stacked vertically for easy infinite scrolling */
     .wishlist-grid-container {
         grid-template-columns: 1fr;
         gap: 12px;
     }
-    
+
     .wishlist-card {
-        flex-direction: row; /* Keep left thumbnail design */
+        flex-direction: row;
+        /* Keep left thumbnail design */
         padding: 10px;
     }
-    
+
     .wishlist-card-thumbnail {
         width: 70px;
         height: 55px;
         margin-right: 10px;
     }
-    
+
     .wishlist-card-details {
         padding-right: 20px;
         gap: 2px;
     }
-    
+
     .wishlist-card-title {
         font-size: 0.85rem;
     }
-    
+
     .wishlist-card-bio {
         font-size: 0.7rem;
     }
-    
+
     .wishlist-card-price {
         font-size: 0.8rem;
     }
-    
+
     /* Footer layout stacked */
     .dashboard-footer {
         flex-direction: column;
@@ -1589,5 +1847,23 @@ body {
         text-align: center;
         padding: 12px 0;
         font-size: 0.7rem;
+    }
+
+    /* Mobile Modal Overrides */
+    .tech-modal-container {
+        padding: 45px 15px 15px 15px !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+        border: none !important;
+    }
+
+    .modal-close-btn {
+        top: 10px !important;
+        right: 10px !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.2rem !important;
     }
 }

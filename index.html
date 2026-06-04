@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI 기반 축구화 추천 시스템 Kick-Optimizer. 사용자의 발볼, 플레이 스타일, 구장 환경 및 예산 범위에 따라 최적의 축구화를 맞춤 추천하고 라이브 최저가와 실사용자 리뷰 감성 분석을 실시간 제공합니다.">
-    <meta name="keywords" content="축구화, 축구화 추천, 풋살화, Puma Ultra, Nike Mercurial, Adidas Predator, Mizuno Morelia, Kick-Optimizer">
+    <meta name="description"
+        content="AI 기반 축구화 추천 시스템 Kick-Optimizer. 사용자의 발볼, 플레이 스타일, 구장 환경 및 예산 범위에 따라 최적의 축구화를 맞춤 추천하고 라이브 최저가와 실사용자 리뷰 감성 분석을 실시간 제공합니다.">
+    <meta name="keywords"
+        content="축구화, 축구화 추천, 풋살화, Puma Ultra, Nike Mercurial, Adidas Predator, Mizuno Morelia, Kick-Optimizer">
     <title>Kick-Optimizer | AI-Powered Football Cleat Recommendation System</title>
-    
+
     <!-- Google Fonts for Cyberpunk & Athletic Styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Orbitron:wght@400;600;800;900&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Orbitron:wght@400;600;800;900&family=Outfit:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Link Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="cyberpunk-theme">
     <!-- Background Scanlines and Grid Overlays for Cyberpunk Tech Aesthetic -->
     <div class="cyber-grid"></div>
     <div class="scanlines"></div>
-    
+
     <!-- Main Dashboard Container -->
     <div class="dashboard-container">
-        
+
         <!-- ==================== HEADER / NAVIGATION ==================== -->
         <header class="dashboard-header">
             <div class="brand-logo" id="brand-logo">
                 <span class="neon-glow-text">KICK</span><span class="accent-text">-OPTIMIZER</span>
                 <span class="tech-version">v2.4.9-AI</span>
             </div>
-            
+
             <nav class="nav-actions">
                 <button class="tech-nav-btn" id="btn-nav-wishlist">
                     <span class="btn-icon">★</span> WISH LIST (<span id="wishlist-count">0</span>)
@@ -51,7 +57,7 @@
                         <p class="intro-description">
                             사용자의 발볼 너비, 선호 플레이 스타일, 주요 경기장 타입 및 예산을 실시간 분석하여 최적의 축구화를 맞춤 추천하는 고성능 AI 매칭 시스템입니다.
                         </p>
-                        
+
                         <!-- Mini terminal diagnostics box (premium detail) -->
                         <div class="terminal-diagnostics">
                             <div class="terminal-header">
@@ -61,11 +67,16 @@
                                 <span class="terminal-title">SYSTEM DIAGNOSTICS</span>
                             </div>
                             <div class="terminal-body font-mono">
-                                <div class="term-line"><span class="term-prompt">></span> DATABASE_STATUS: <span class="status-ok">NOMINAL (58 RECORDS)</span></div>
-                                <div class="term-line"><span class="term-prompt">></span> NLP_SENTIMENT_ENGINE: <span class="status-ok">V2.1 ACTIVE</span></div>
-                                <div class="term-line"><span class="term-prompt">></span> WEB_SCRAPER_PIPELINE: <span class="status-ok">CONNECTED</span></div>
-                                <div class="term-line"><span class="term-prompt">></span> MOCK_LATENCY: <span class="accent-text">142ms</span></div>
-                                <div class="term-line blink"><span class="term-prompt">></span> READY FOR USER PROFILING...</div>
+                                <div class="term-line"><span class="term-prompt">></span> DATABASE_STATUS: <span
+                                        class="status-ok">NOMINAL (58 RECORDS)</span></div>
+                                <div class="term-line"><span class="term-prompt">></span> NLP_SENTIMENT_ENGINE: <span
+                                        class="status-ok">V2.1 ACTIVE</span></div>
+                                <div class="term-line"><span class="term-prompt">></span> WEB_SCRAPER_PIPELINE: <span
+                                        class="status-ok">CONNECTED</span></div>
+                                <div class="term-line"><span class="term-prompt">></span> MOCK_LATENCY: <span
+                                        class="accent-text">142ms</span></div>
+                                <div class="term-line blink"><span class="term-prompt">></span> READY FOR USER
+                                    PROFILING...</div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +95,8 @@
                                 </div>
                                 <div class="node-selector-nodes">
                                     <button class="node-btn" data-value="narrow" id="node-width-narrow">좁음</button>
-                                    <button class="node-btn active" data-value="normal" id="node-width-normal">보통</button>
+                                    <button class="node-btn active" data-value="normal"
+                                        id="node-width-normal">보통</button>
                                     <button class="node-btn" data-value="wide" id="node-width-wide">넓음</button>
                                 </div>
                             </div>
@@ -101,7 +113,8 @@
                                     <div class="node-slider-progress" id="style-progress" style="width: 0%;"></div>
                                 </div>
                                 <div class="node-selector-nodes">
-                                    <button class="node-btn active" data-value="speed" id="node-style-speed">스피드</button>
+                                    <button class="node-btn active" data-value="speed"
+                                        id="node-style-speed">스피드</button>
                                     <button class="node-btn" data-value="control" id="node-style-control">컨트롤</button>
                                     <button class="node-btn" data-value="physical" id="node-style-physical">피지컬</button>
                                 </div>
@@ -139,7 +152,8 @@
                                 <div class="node-selector-nodes brand-nodes">
                                     <button class="node-btn" data-value="nike" id="node-brand-nike">나이키</button>
                                     <button class="node-btn" data-value="adidas" id="node-brand-adidas">아디다스</button>
-                                    <button class="node-btn" data-value="newbalance" id="node-brand-newbalance">뉴발란스</button>
+                                    <button class="node-btn" data-value="newbalance"
+                                        id="node-brand-newbalance">뉴발란스</button>
                                     <button class="node-btn" data-value="mizuno" id="node-brand-mizuno">미즈노</button>
                                     <button class="node-btn" data-value="puma" id="node-brand-puma">퓨마</button>
                                     <button class="node-btn active" data-value="all" id="node-brand-all">전부</button>
@@ -157,7 +171,8 @@
                                     <span class="price-label">MIN (KRW)</span>
                                     <div class="number-input-row">
                                         <button class="adjust-btn minus" id="btn-min-minus">-</button>
-                                        <input type="number" id="input-price-min" value="100000" min="50000" max="300000" step="10000">
+                                        <input type="number" id="input-price-min" value="100000" min="50000"
+                                            max="300000" step="10000">
                                         <button class="adjust-btn plus" id="btn-min-plus">+</button>
                                     </div>
                                 </div>
@@ -166,7 +181,8 @@
                                     <span class="price-label">MAX (KRW)</span>
                                     <div class="number-input-row">
                                         <button class="adjust-btn minus" id="btn-max-minus">-</button>
-                                        <input type="number" id="input-price-max" value="200000" min="100000" max="400000" step="10000">
+                                        <input type="number" id="input-price-max" value="200000" min="100000"
+                                            max="400000" step="10000">
                                         <button class="adjust-btn plus" id="btn-max-plus">+</button>
                                     </div>
                                 </div>
@@ -188,7 +204,7 @@
 
             <!-- ==================== PAGE 2: AI MATCHING & DETAIL RESULT ==================== -->
             <section class="page-section" id="page-result">
-                
+
                 <!-- Scraping Live Loader Overlay (Interactive Detail) -->
                 <div class="scraper-loader-overlay" id="scraper-loader">
                     <div class="loader-content">
@@ -213,7 +229,7 @@
                             <button class="wishlist-star-btn" id="btn-result-star" aria-label="Toggle Wishlist">
                                 <span class="star-icon">★</span>
                             </button>
-                            
+
                             <!-- Oversized neon matching rate -->
                             <div class="matching-badge font-orbitron">
                                 MATCHING <span class="neon-glow-text" id="result-match-rate">98%</span>
@@ -222,14 +238,16 @@
                             <!-- Image cutout container -->
                             <div class="product-image-container">
                                 <div class="image-glow-background"></div>
-                                <img src="assets/puma_ultra_match.png" alt="Recommended Cleat" id="result-cleat-img" class="cleat-cutout-img">
+                                <img src="assets/puma_ultra_match.png" alt="Recommended Cleat" id="result-cleat-img"
+                                    class="cleat-cutout-img">
                             </div>
 
                             <!-- Product Info Footer -->
                             <div class="product-meta">
                                 <h2 class="product-model font-orbitron" id="result-cleat-name">Puma Ultra Match+ AG</h2>
-                                <p class="product-bio-description" id="result-cleat-desc">스피드를 극대화하는 경량 아웃솔과 편안한 착화감의 Puma 대표 스피드 사일로.</p>
-                                
+                                <p class="product-bio-description" id="result-cleat-desc">스피드를 극대화하는 경량 아웃솔과 편안한 착화감의
+                                    Puma 대표 스피드 사일로.</p>
+
                                 <div class="ai-tags-row" id="result-cleat-tags">
                                     <span class="ai-tag">#극강의가벼움</span>
                                     <span class="ai-tag">#인조잔디내구성상</span>
@@ -249,19 +267,43 @@
                             </div>
                             <div class="widget-body">
                                 <p class="nlp-review-content" id="result-nlp-review">
-                                    경량화에 초점을 맞춘 모델로, 스프린트 시 극강의 가속을 제공합니다. 다만 니트 핏이 타이트하여 첫 실착 시 뒤꿈치 까짐 현상이 보고되었으나, 인조잔디에서 뛰어난 내구성을 증명했습니다.
+                                    경량화에 초점을 맞춘 모델로, 스프린트 시 극강의 가속을 제공합니다. 다만 니트 핏이 타이트하여 첫 실착 시 뒤꿈치 까짐 현상이 보고되었으나,
+                                    인조잔디에서 뛰어난 내구성을 증명했습니다.
                                 </p>
-                                <div class="nlp-badge font-mono">
-                                    SENTIMENT SCORE: <span class="accent-text">POSITIVE (89.4%)</span>
+
+                                <!-- New high-fidelity Sentiment Gauge -->
+                                <div class="sentiment-gauge-wrapper">
+                                    <div class="sentiment-gauge-header font-mono">
+                                        <span>AI SENTIMENT RATING:</span>
+                                        <span class="sentiment-percent accent-text" id="result-sentiment-score">89.4%
+                                            POSITIVE</span>
+                                    </div>
+                                    <div class="sentiment-gauge-track">
+                                        <div class="sentiment-gauge-bar" id="result-sentiment-bar" style="width: 89.4%">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamically populated categorized keyword analysis -->
+                                <div class="ai-analysis-tags-section">
+                                    <div class="analysis-tag-group">
+                                        <span class="group-label font-mono">ADVANTAGES // 장점:</span>
+                                        <div class="ai-tags-row" id="result-pros-tags"></div>
+                                    </div>
+                                    <div class="analysis-tag-group">
+                                        <span class="group-label font-mono">CAUTIONS // 피팅 및 주의사항:</span>
+                                        <div class="ai-tags-row" id="result-cautions-tags"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Scraped price table -->
-                        <div class="data-widget-card">
+                        <div class="data-widget-card price-widget-card-secondary">
                             <div class="widget-header">
-                                <div class="status-indicator-light green"></div>
-                                <h3 class="widget-title uppercase font-orbitron">Live Marketplace Scraped Prices</h3>
+                                <div class="status-indicator-light muted-gray"></div>
+                                <h3 class="widget-title uppercase font-orbitron text-secondary">Marketplace Reference
+                                    Prices</h3>
                             </div>
                             <div class="widget-body no-padding">
                                 <table class="scraped-prices-table" id="scraped-prices-table">
@@ -279,17 +321,15 @@
                                             <td class="text-right"><span class="price-status green">최저가</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Crazy 11</td>
-                                            <td class="text-right">₩134,000</td>
-                                            <td class="text-right"><span class="price-status">판매중</span></td>
-                                        </tr>
-                                        <tr>
                                             <td>Kream</td>
                                             <td class="text-right">₩139,000</td>
                                             <td class="text-right"><span class="price-status">판매중</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="marketplace-disclaimer font-mono">
+                                    * 본 가격 정보는 외부 사이트 가격 참조용(서브)이며, 상세 설명 및 성능 위주로 축구화를 선택하는 것을 권장합니다.
+                                </div>
                             </div>
                         </div>
 
@@ -346,7 +386,93 @@
         </footer>
     </div>
 
+    <!-- ==================== PREMIUM DETAIL MODAL ==================== -->
+    <div class="tech-modal-overlay" id="detail-modal">
+        <div class="tech-modal-container">
+            <button class="modal-close-btn" id="btn-modal-close" aria-label="Close Modal">&times;</button>
+            <div class="result-screen-layout modal-override">
+                <!-- Left Pane: Showcase Card -->
+                <div class="product-display-pane">
+                    <div class="product-showcase-card modal-card-override">
+                        <!-- Image cutout container -->
+                        <div class="product-image-container">
+                            <div class="image-glow-background"></div>
+                            <img src="" alt="" id="modal-cleat-img" class="cleat-cutout-img">
+                        </div>
+                        <!-- Product Info Footer -->
+                        <div class="product-meta">
+                            <h2 class="product-model font-orbitron" id="modal-cleat-name"></h2>
+                            <p class="product-bio-description" id="modal-cleat-desc"></p>
+                            <div class="ai-tags-row" id="modal-cleat-tags"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Pane: Price table & Reviews -->
+                <div class="product-data-pane">
+                    <!-- AI NLP Sentiment analysis block -->
+                    <div class="data-widget-card">
+                        <div class="widget-header">
+                            <div class="status-indicator-light green-blink"></div>
+                            <h3 class="widget-title uppercase font-orbitron">AI NLP Sentiment Analysis</h3>
+                        </div>
+                        <div class="widget-body">
+                            <p class="nlp-review-content" id="modal-nlp-review"></p>
+
+                            <!-- New high-fidelity Sentiment Gauge inside Modal -->
+                            <div class="sentiment-gauge-wrapper">
+                                <div class="sentiment-gauge-header font-mono">
+                                    <span>AI SENTIMENT RATING:</span>
+                                    <span class="sentiment-percent accent-text"
+                                        id="modal-sentiment-score">POSITIVE</span>
+                                </div>
+                                <div class="sentiment-gauge-track">
+                                    <div class="sentiment-gauge-bar" id="modal-sentiment-bar" style="width: 50%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Dynamically populated categorized keyword analysis in Modal -->
+                            <div class="ai-analysis-tags-section">
+                                <div class="analysis-tag-group">
+                                    <span class="group-label font-mono">ADVANTAGES // 장점:</span>
+                                    <div class="ai-tags-row" id="modal-pros-tags"></div>
+                                </div>
+                                <div class="analysis-tag-group">
+                                    <span class="group-label font-mono">CAUTIONS // 피팅 및 주의사항:</span>
+                                    <div class="ai-tags-row" id="modal-cautions-tags"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Scraped price table -->
+                    <div class="data-widget-card price-widget-card-secondary">
+                        <div class="widget-header">
+                            <div class="status-indicator-light muted-gray"></div>
+                            <h3 class="widget-title uppercase font-orbitron text-secondary">Marketplace Reference Prices
+                            </h3>
+                        </div>
+                        <div class="widget-body no-padding">
+                            <table class="scraped-prices-table">
+                                <thead>
+                                    <tr>
+                                        <th>Marketplace</th>
+                                        <th class="text-right">Price</th>
+                                        <th class="text-right">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modal-marketplace-rows"></tbody>
+                            </table>
+                            <div class="marketplace-disclaimer font-mono">
+                                * 본 가격 정보는 외부 사이트 가격 참조용(서브)이며, 상세 설명 및 성능 위주로 축구화를 선택하는 것을 권장합니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Inject JS Engine -->
     <script src="app.js"></script>
 </body>
+
 </html>
